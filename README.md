@@ -1,9 +1,9 @@
-# iOS-Starter
+# Android-Starter
 Starter app for Kinvey Android 3.0 SDK
 
 This is a Android Sample app to illustrate how to use version 3.0 of the [Kinvey](http://www.kinvey.com) Android library.
 
-_Note: This starter app uses a developer preview of the Kinvey iOS 3.0 Library. To use the GA version, refer to the [Devcenter](http://devcenter.kinvey.com/ios)_ 
+_Note: This starter app uses a developer preview of the Kinvey Android 3.0 Library. To use the GA version, refer to the [Devcenter](http://devcenter.kinvey.com/android)_
 
 ## Concepts illustrated in this sample
 * Logging in a user
