@@ -1,7 +1,7 @@
 # iOS-Starter
-Starter app for Kinvey iOS 3.0 SDK
+Starter app for Kinvey Android 3.0 SDK
 
-This is a iOS Sample app to illustrate how to use version 3.0 of the [Kinvey](http://www.kinvey.com) iOS library. 
+This is a Android Sample app to illustrate how to use version 3.0 of the [Kinvey](http://www.kinvey.com) Android library.
 
 _Note: This starter app uses a developer preview of the Kinvey iOS 3.0 Library. To use the GA version, refer to the [Devcenter](http://devcenter.kinvey.com/ios)_ 
 
@@ -11,8 +11,8 @@ _Note: This starter app uses a developer preview of the Kinvey iOS 3.0 Library. 
 * Managing offline data in a "Sync" store and synchronizing it with the backend
 
 ## Prerequisites
-* iOS 8 or later
-* Kinvey iOS library 3.0.0 (bundled in as a developer preview)
+* Android api leven 15 or later
+* Kinvey Android library 3.0.0 (bundled in as a developer preview)
 * [Kinvey](https://console.kinvey.com) app ID and secret. Before compiling, replace `appKey` and `appSecret` in the `AppDelegate` with values you obtain from the console.
 
 ## License
