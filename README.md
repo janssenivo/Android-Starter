@@ -11,7 +11,7 @@ _Note: This starter app uses a developer preview of the Kinvey Android 3.0 Libra
 * Managing offline data in a "Sync" store and synchronizing it with the backend
 
 ## Prerequisites
-* Android api leven 15 or later
+* Android api level 15 or later
 * Kinvey Android library 3.0.0 (bundled in as a developer preview)
 * [Kinvey](https://console.kinvey.com) app ID and secret. Before compiling, replace `<Your App Key>` and `<Your App Secret>` in the `assets/kinvey.properties` file with values you obtain from the console.
 
