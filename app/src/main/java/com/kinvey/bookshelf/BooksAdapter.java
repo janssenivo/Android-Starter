@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class BooksAdapter extends BaseAdapter {
 
-    private final List<BookDTO> books;
+    private final List<Book> books;
     private final Context context;
 
-    public BooksAdapter(List<BookDTO> books, Context context){
+    public BooksAdapter(List<Book> books, Context context){
 
         this.books = books;
         this.context = context;
@@ -29,7 +29,7 @@ public class BooksAdapter extends BaseAdapter {
     }
 
     @Override
-    public BookDTO getItem(int position) {
+    public Book getItem(int position) {
         return books.get(position);
     }
 
@@ -45,7 +45,8 @@ public class BooksAdapter extends BaseAdapter {
         }
 
         TextView tv = (TextView) convertView;
-        tv.setText(books.get(position).getName());
+        Book book = books.get(position);
+        tv.setText(book.getName());
         return tv;
     }
 }
