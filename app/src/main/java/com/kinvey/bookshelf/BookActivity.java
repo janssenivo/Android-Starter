@@ -29,6 +29,8 @@ import com.kinvey.android.Client;
 import com.kinvey.android.callback.AsyncUploaderProgressListener;
 import com.kinvey.android.callback.KinveyDeleteCallback;
 import com.kinvey.android.store.DataStore;
+import com.kinvey.bookshelf.veryverylongname.toseeif.evenmore.realmstufftesting.another.level.ofindirection.wecanmesswithrealm.Book;
+import com.kinvey.bookshelf.veryverylongname.toseeif.evenmore.realmstufftesting.another.level.ofindirection.wecanmesswithrealm.NestedBook;
 import com.kinvey.java.cache.KinveyCachedClientCallback;
 import com.kinvey.android.callback.AsyncDownloaderProgressListener;
 import com.kinvey.java.core.KinveyClientCallback;
@@ -85,7 +87,9 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.remove).setOnClickListener(this);
         findViewById(R.id.select_image_btn).setOnClickListener(this);
 
-        bookStore = DataStore.collection(Book.COLLECTION, Book.class, StoreType.CACHE, client);
+        Toast.makeText(this, "This Classname: "+Book.class, Toast.LENGTH_LONG).show();
+
+        bookStore = DataStore.collection("Book", Book.class, StoreType.SYNC, client);
         verifyStoragePermissions(this);
 
         ArrayList<StoreType> storeTypes = new ArrayList<>();
@@ -121,7 +125,7 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onSuccess(Book book) {
                     BookActivity.this.book = book;
-                    name.setText(BookActivity.this.book.getName());
+                    name.setText(BookActivity.this.book.name);
                     invalidateOptionsMenu();
                     pd.dismiss();
                     try {
@@ -161,7 +165,9 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
                     final ProgressDialog pd = new ProgressDialog(this);
                     pd.setMessage("Saving");
                     pd.show();
-                    book.setName(name.getText().toString());
+                    book.name = (name.getText().toString());
+                    book.nestedBook = new NestedBook();
+                    book.nestedBook.name = (name.getText().toString());
                     bookStore.save(book,
                             new KinveyClientCallback<Book>() {
                                 @Override
@@ -173,6 +179,7 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
                                 @Override
                                 public void onFailure(Throwable error) {
                                     pd.dismiss();
+                                    Log.d("tag",error.getMessage());
                                     Toast.makeText(BookActivity.this, "Can't save: " + error.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -219,7 +226,7 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void checkImage(Book book) throws IOException {
-        String imageId = book.getImageId();
+        String imageId = book.imageId;
         if (imageId == null) {
             return;
         }
@@ -231,6 +238,18 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
         FileMetaData fileMetaDataForDownload = new FileMetaData();
         fileMetaDataForDownload.setId(imageId);
         client.getFileStore((StoreType) spinner.getAdapter().getItem(spinner.getSelectedItemPosition())).download(fileMetaDataForDownload, fos, new AsyncDownloaderProgressListener<FileMetaData>() {
+
+            @Override
+            public boolean isCancelled() {
+                return false;
+            }
+
+            @Override
+            public void onCancelled() {
+                return;
+            }
+
+
             @Override
             public void onSuccess(FileMetaData metaData) {
 
@@ -274,13 +293,22 @@ public class BookActivity extends AppCompatActivity implements View.OnClickListe
         try {
             assert file != null;
             client.getFileStore((StoreType) spinner.getAdapter().getItem(spinner.getSelectedItemPosition())).upload(file, new AsyncUploaderProgressListener<FileMetaData>() {
+               @Override
+                public boolean isCancelled() {
+                    return false;
+                }
+                @Override
+                public void onCancelled() {
+                    return;
+                }
+
                 @Override
                 public void onSuccess(FileMetaData metaData) {
                     imageMetaData = metaData;
                     pd.dismiss();
                     Toast.makeText(getApplication(), "uploadFileToNetwork: onSuccess", Toast.LENGTH_SHORT).show();
                     setImage(file);
-                    book.setImageId(imageMetaData.getId());
+                    book.imageId = imageMetaData.getId();
                 }
 
                 @Override

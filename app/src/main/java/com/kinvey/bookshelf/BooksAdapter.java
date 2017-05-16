@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.kinvey.bookshelf.veryverylongname.toseeif.evenmore.realmstufftesting.another.level.ofindirection.wecanmesswithrealm.Book;
+
 import java.util.List;
 
 /**
@@ -46,7 +48,7 @@ public class BooksAdapter extends BaseAdapter {
 
         TextView tv = (TextView) convertView;
         Book book = books.get(position);
-        tv.setText(book.getName());
+        tv.setText(book.name);
         return tv;
     }
 }

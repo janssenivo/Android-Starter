@@ -23,6 +23,7 @@ import com.kinvey.android.sync.KinveyPullResponse;
 import com.kinvey.android.sync.KinveyPushCallback;
 import com.kinvey.android.sync.KinveyPushResponse;
 import com.kinvey.android.sync.KinveySyncCallback;
+import com.kinvey.bookshelf.veryverylongname.toseeif.evenmore.realmstufftesting.another.level.ofindirection.wecanmesswithrealm.Book;
 import com.kinvey.java.cache.KinveyCachedClientCallback;
 import com.kinvey.java.core.KinveyClientCallback;
 import com.kinvey.java.dto.User;
@@ -44,7 +45,7 @@ public class ShelfActivity extends AppCompatActivity implements AdapterView.OnIt
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         client =  ((App)getApplication()).getSharedClient();
-        bookStore = DataStore.collection(Book.COLLECTION, Book.class, StoreType.CACHE, client);
+        bookStore = DataStore.collection("Book", Book.class, StoreType.CACHE, client);
     }
 
     @Override
